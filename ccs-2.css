@@ -1,0 +1,3631 @@
+/* Variables CSS */
+:root {
+    --background: 0 0% 96%;
+    --foreground: 30 15% 18%;
+    --primary: 0 60% 38%;
+    --primary-foreground: 0 0% 96%;
+    --gold: 0 58% 42%;
+    --gold-light: 0 45% 90%;
+    --gold-dark: 0 62% 34%;
+    --brown: 0 68% 28%;
+    --brown-light: 0 40% 93%;
+    --brown-dark: 0 72% 20%;
+    --cream: 0 0% 98%;
+    --warm-white: 33 26% 93%;
+    --shadow-elegant: 0 10px 30px -10px hsl(0 60% 38% / 0.28);
+    --shadow-gold: 0 4px 20px hsl(0 58% 42% / 0.22);
+    /* Nuevo tono para laterales tipo papel (blanco piedra) */
+    --paper-side: 0 0% 97%;
+}
+
+/* Contenedor centrado tipo tarjeta */
+.site-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 0.75rem;
+    background: transparent; /* fondo y sombra ahora los maneja page-shell */
+    box-shadow: none;
+}
+
+/* Contenedor envolvente para sombra continua a lo largo de toda la página */
+.page-shell {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #ffffff;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Animaciones de iconos modernos */
+.animated-heart {
+    transition: transform 0.3s ease;
+}
+
+.animated-heart:hover {
+    transform: scale(1.1);
+}
+
+.animated-heart .heart-path {
+    filter: drop-shadow(0 0 10px rgba(201, 162, 77, 0.6));
+}
+
+.animated-celebration {
+    transition: transform 0.3s ease;
+}
+
+.animated-celebration:hover {
+    transform: scale(1.1);
+}
+
+.animated-camera {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.animated-camera:hover {
+    transform: scale(1.1);
+}
+
+.animated-camera:active .flash-effect {
+    animation: cameraFlash 0.3s ease-in-out;
+}
+
+@keyframes cameraFlash {
+    0% { opacity: 0; r: 0; }
+    50% { opacity: 0.8; r: 12; }
+    100% { opacity: 0; r: 0; }
+}
+
+.animated-music {
+    transition: transform 0.3s ease;
+}
+
+.animated-music:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.animated-dresscode {
+    transition: transform 0.3s ease;
+}
+
+.animated-dresscode:hover {
+    transform: scale(1.1);
+}
+
+.animated-clipboard {
+    transition: transform 0.3s ease;
+}
+
+.animated-clipboard:hover {
+    transform: scale(1.1);
+}
+
+.animated-gift {
+    transition: transform 0.3s ease;
+}
+
+.animated-gift:hover {
+    transform: scale(1.1);
+}
+
+.animated-gift:hover .gift-lid {
+    animation: giftOpen 0.5s ease-in-out;
+}
+
+@keyframes giftOpen {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-3px) rotateX(10deg); }
+    100% { transform: translateY(0); }
+}
+
+.animated-whatsapp {
+    transition: transform 0.3s ease;
+}
+
+.animated-whatsapp:hover {
+    transform: scale(1.1);
+}
+
+.animated-volume {
+    transition: transform 0.3s ease;
+}
+
+.animated-volume:hover {
+    transform: scale(1.1);
+}
+
+/* Efectos globales para iconos */
+.event-icon, .party-icon, .gift-icon, .whatsapp-icon, .camera-icon, .modal-icon {
+    overflow: visible;
+    filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.1));
+}
+
+/* Mejoras de rendimiento */
+.animated-heart svg,
+.animated-celebration svg,
+.animated-camera svg,
+.animated-music svg,
+.animated-dresscode svg,
+.animated-clipboard svg,
+.animated-gift svg,
+.animated-whatsapp svg,
+.animated-volume svg {
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Reset y base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: hsl(var(--cream)); /* igual que el fondo inferior */
+    color: hsl(var(--foreground));
+    line-height: 1.6;
+}
+
+/* Tipografía */
+.names {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Modal de Bienvenida */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: var(--shadow-elegant);
+    border: 2px solid hsl(var(--gold) / 0.2);
+}
+
+/* En el modal de bienvenida, ocultar el recuadro y dejar solo el texto sobre el fondo borroso */
+.modal-overlay .modal-content {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    max-width: 860px;
+    width: min(92vw, 860px);
+    padding: clamp(2rem, 5vw, 3rem);
+}
+
+/* Bienvenida estilo hero de pantalla completa */
+.welcome-hero {
+    position: relative;
+    max-width: 860px;
+    width: min(92vw, 860px);
+    padding: clamp(2rem, 5vw, 3rem);
+    text-align: center;
+    color: hsl(var(--foreground));
+    background: transparent;
+    border: none;
+}
+
+/* Watermark de nombres en script detrás del contenido */
+.script-names {
+    position: absolute;
+    left: 50%;
+    top: 38%;
+    transform: translate(-50%, -50%);
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.75rem, 12vw, 8rem);
+    color: rgba(255, 255, 255, 0.95);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    text-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    z-index: 0;
+}
+
+.welcome-date,
+.welcome-heading,
+.welcome-subtitle,
+.modal-buttons { position: relative; z-index: 1; }
+
+/* Ocultar marca de agua "Fede & Lore" del fondo en el modal */
+.modal-overlay .script-names { display: none; }
+
+.modal-overlay .welcome-hero::before {
+    content: "";
+    position: absolute;
+    inset: -40vh -10vw -40vh -10vw;
+    background-image: url('foto0.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.55;
+    z-index: -1;
+    filter: blur(15px);
+}
+
+.welcome-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: hsl(var(--brown));
+    font-weight: 700;
+    margin: 0 auto 0.75rem;
+    max-width: 30ch;
+    white-space: normal;
+    word-break: normal;
+    text-wrap: balance;
+}
+
+/* Unificar tamaño dentro del título del modal */
+.welcome-heading .names,
+.welcome-heading .ampersand {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+}
+
+/* Afinar el & dorado sin desalinear el texto */
+.welcome-heading .ampersand {
+    color: hsl(var(--gold));
+    padding: 0 0.15ch;
+}
+
+.welcome-date {
+    font-size: 0.95rem;
+    color: hsl(var(--foreground) / 0.7);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.welcome-subtitle {
+    color: hsl(var(--foreground) / 0.75);
+    margin-bottom: 1.25rem;
+}
+
+/* Sección: Saludo personalizado por invitado / familia (vía parámetro en la URL) */
+.guest-section {
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid hsl(var(--gold) / 0.25);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    padding: 2.5rem 1.5rem;
+    width: 100%;
+    max-width: none;
+    margin: 1.5rem auto 0;
+}
+
+.guest-badge {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #fff;
+    background: hsl(var(--brown-dark));
+}
+
+.guest-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: hsl(var(--brown));
+    margin-bottom: 0.25rem;
+    font-weight: 700;
+}
+
+.guest-subtitle {
+    color: hsl(var(--gold-dark));
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.guest-greeting {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: 24rem;
+    margin: 0 auto;
+}
+
+.guest-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(0.9rem, 2.2vw, 1.05rem);
+    padding: 0.5rem 1.1rem;
+    border-radius: 8px;
+    display: inline-flex;
+    width: auto;
+    color: hsl(var(--foreground));
+}
+
+/* Colores intercalados (fondo), tomados de la misma paleta dorado/marrón del sitio */
+.guest-name.color-1 { background: hsl(var(--brown) / 0.1); }
+.guest-name.color-2 { background: hsl(var(--gold-dark) / 0.12); }
+.guest-name.color-3 { background: hsl(var(--brown-dark) / 0.1); }
+.guest-name.color-4 { background: hsl(var(--gold) / 0.14); }
+
+.guest-closing {
+    margin-top: 1.5rem;
+    color: hsl(var(--foreground) / 0.7);
+    font-size: 0.95rem;
+}
+
+@media (max-width: 480px) {
+    .guest-section { padding: 2rem 1rem; }
+    .guest-title { font-size: 2.4rem; }
+}
+
+.modal-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
+    justify-content: center;
+    align-items: center; /* evita que los botones se estiren */
+}
+
+@media (max-width: 640px) {
+    .modal-buttons { flex-direction: column; align-items: center; }
+    .modal-buttons .btn-wedding { width: auto; align-self: center; }
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    color: hsl(var(--brown));
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.modal-names {
+    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    color: hsl(var(--brown));
+    margin-bottom: 1rem;
+}
+
+.modal-subtitle {
+    color: hsl(var(--foreground) / 0.7);
+    margin-bottom: 2rem;
+}
+
+.modal-icon {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 auto 2rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: hsl(var(--gold) / 0.1);
+    border: 2px solid hsl(var(--gold));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--gold));
+}
+
+
+
+.btn-outline {
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    border: 2px solid hsl(var(--brown) / 0.3);
+    background: transparent;
+    color: hsl(var(--brown));
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn-outline:hover {
+    background: hsl(var(--brown) / 0.1);
+    border-color: hsl(var(--brown));
+}
+
+/* Reproductor de música */
+.music-player {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+
+.music-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, hsl(var(--brown)), hsl(var(--gold)));
+    color: white;
+    cursor: pointer;
+    box-shadow: var(--shadow-elegant);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-button:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-gold);
+}
+
+/* Hero Section dividida 50/50 */
+.hero-wrapper {
+    position: relative;
+    z-index: 0;
+    padding: 0;
+}
+
+/* Para centrar la grilla de portada igual que el resto */
+.hero-container {
+    max-width: 1100px;
+    background: transparent;
+    box-shadow: none;
+}
+
+.hero-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 80vh; /* actualizado a 80vh */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: none; /* la sombra viene del contenedor padre */
+    background: transparent; /* sin fondo para igualar el blanco */
+}
+
+/* Lado izquierdo: imagen fija con efecto scroll (parallax) */
+.hero-left {
+    position: relative;
+    display: block;
+    min-height: 60vh;
+    overflow: hidden;
+}
+
+.hero-left-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('foto0.jpg');
+    background-size: cover;
+    background-position: center 25%;
+    background-repeat: no-repeat;
+    transform: translateY(0);
+    will-change: transform;
+}
+
+/* Portada única (un solo panel a todo el ancho, sin lado derecho) */
+.hero-split--single {
+    grid-template-columns: 1fr;
+}
+
+/* Versículo debajo del conteo regresivo, misma sección: solo texto rojo vino, sin contorno */
+.hero-quote-card {
+    width: min(88%, 640px);
+    margin: 2.5rem auto 0;
+    text-align: center;
+}
+
+.hero-quote-text {
+    font-family: 'Playfair Display', serif;
+    font-style: normal;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-size: clamp(0.95rem, 2.6vw, 1.35rem);
+    line-height: 1.5;
+    color: hsl(var(--brown-dark));
+    margin-bottom: 0.75rem;
+}
+
+.hero-quote-ref {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+    color: hsl(var(--brown-dark));
+}
+
+@media (max-width: 480px) {
+    .hero-quote-card { width: 92%; }
+}
+
+/* Image container for left hero image */
+.img-container {
+    width: 90%;
+    max-width: 600px;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.img-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Lado derecho: sin efecto, solo imagen estática */
+.hero-right {
+    position: relative;
+    overflow: hidden;
+    background: hsl(var(--paper-side)); /* tono papel para rellenar sin dejar hueco visible */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+}
+
+/* El hero-left usa siempre background; en móvil cambiamos el attachment */
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.hero-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 1rem;
+}
+
+.hero-text {
+    max-width: 32rem;
+}
+
+.date {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
+}
+
+.names {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.ampersand {
+    color: hsl(var(--gold));
+}
+
+.quote {
+    font-size: 1.25rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.scroll-indicator {
+    animation: bounce 2s infinite;
+}
+
+.scroll-mouse {
+    width: 1.5rem;
+    height: 2.5rem;
+    border: 2px solid white;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.scroll-wheel {
+    width: 0.25rem;
+    height: 0.75rem;
+    background: white;
+    border-radius: 0.125rem;
+    margin-top: 0.5rem;
+    animation: pulse 2s infinite;
+}
+
+/* Content */
+.content {
+    position: relative;
+    z-index: 1;
+    /* Ya no empuja 100vh completos porque la portada es 60vh */
+    margin-top: 0;
+    background: hsl(var(--cream));
+}
+
+/* Sections */
+.countdown-section,
+.events-section,
+.gallery-section,
+.party-section,
+.gifts-section,
+.rsvp-section {
+    padding: 4rem 1rem;
+}
+
+.gallery-section,
+.gifts-section {
+    background-color: hsl(var(--warm-white));
+}
+
+/* Alternancia de tonos: cada sección alterna blanco puro / blanco cálido,
+   para que la división entre secciones se note por el color de fondo
+   (además de la sombra), no por la línea decorativa. */
+.countdown-section {
+    background-color: hsl(var(--warm-white));
+}
+
+.events-section,
+.party-section,
+.rsvp-section {
+    background-color: #ffffff;
+}
+
+/* Línea de sombra en la costura: da la sensación de que la sección
+   está "por debajo" de las secciones vecinas (efecto de capas).
+   Aplicar esta clase a cualquier <section> para replicar el efecto. */
+.section-shadow-seam {
+    position: relative;
+    box-shadow:
+        inset 0 10px 18px -14px rgba(0, 0, 0, 0.22),
+        inset 0 -10px 18px -14px rgba(0, 0, 0, 0.22);
+}
+
+/* Variante solo arriba o solo abajo, por si no querés el efecto en ambos bordes */
+.section-shadow-seam-top {
+    box-shadow: inset 0 8px 16px -14px rgba(0, 0, 0, 0.16);
+}
+
+.section-shadow-seam-bottom {
+    box-shadow: inset 0 -8px 16px -14px rgba(0, 0, 0, 0.16);
+}
+
+/* Línea divisoria decorativa: trazo curvo fino que se desvanece en los
+   extremos + puntitos degradados, repetida horizontalmente.
+   Se usa SOLO en gallery-section y gifts-section, una vez arriba y una
+   vez abajo, pegada al borde de la sección (no al centro), separada
+   del contenido/texto por un margen generoso. La división real entre
+   secciones la dan la sombra (.section-shadow-seam) y el cambio de
+   tono de fondo, que ocurren en la costura, sin la línea. */
+.deco-divider {
+    width: 100%;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='190' height='20' viewBox='0 0 190 20'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='150' y2='0' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%23A92D2D' stop-opacity='0'/%3E%3Cstop offset='25%25' stop-color='%23A92D2D' stop-opacity='0.85'/%3E%3Cstop offset='75%25' stop-color='%23A92D2D' stop-opacity='0.85'/%3E%3Cstop offset='100%25' stop-color='%23A92D2D' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0,10 Q75,5 150,10' stroke='url(%23g)' stroke-width='0.9' fill='none'/%3E%3Ccircle cx='159' cy='9.6' r='0.7' fill='%23A92D2D' opacity='0.75'/%3E%3Ccircle cx='164' cy='9.3' r='1.3' fill='%23A92D2D' opacity='0.85'/%3E%3Ccircle cx='170' cy='9.8' r='0.6' fill='%23A92D2D' opacity='0.6'/%3E%3C/svg%3E");
+    background-repeat: round no-repeat;
+    background-position: center;
+    opacity: 0.7;
+}
+
+/* Pegada al borde superior de la sección, empuja el título/texto hacia abajo */
+.deco-divider--top {
+    margin-top: -2.25rem;
+    margin-bottom: 2.25rem;
+}
+
+/* Pegada al borde inferior de la sección, con espacio respecto al contenido de arriba */
+.deco-divider--bottom {
+    margin-top: 2.25rem;
+    margin-bottom: -2.25rem;
+}
+
+/* Countdown */
+.countdown-section {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: hsl(var(--brown));
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    flex-wrap: nowrap; /* forzar una sola línea */
+}
+
+/* Ajuste responsivo para que quepa siempre en una línea */
+.countdown-section {
+	padding: 1.5rem 0.5rem;
+}
+
+.countdown-item { min-width: 0; }
+/* Countdown typography: more elegant and smooth */
+.countdown-number {
+	font-family: 'Playfair Display', serif;
+	font-weight: 500;
+	font-variant-numeric: lining-nums oldstyle-nums;
+	letter-spacing: -0.02em;
+	line-height: 1;
+	color: hsl(var(--foreground));
+	margin-bottom: 0.5rem;
+	display: block;
+}
+
+.countdown-label {
+	font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+	color: hsl(var(--brown));
+	text-transform: uppercase;
+	letter-spacing: 0.18em;
+	opacity: 0.9;
+}
+
+.countdown-separator { color: hsl(var(--brown-light)); }
+
+/* Evitar ruptura en móviles muy pequeños */
+@media (max-width: 480px) {
+	.countdown-container { gap: 0.5rem; }
+}
+
+/* Remove strict lord-icon sizing to allow custom sizes */
+/* .event-icon lord-icon,
+.camera-icon lord-icon,
+.gift-icon lord-icon,
+.party-icon lord-icon {
+	width: 110px !important;
+	height: 110px !important;
+} */
+
+.event-icon,
+.camera-icon,
+.gift-icon,
+.party-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Enlarge event icon circle slightly for balance */
+.event-icon {
+	width: 7rem;
+	height: 7rem;
+	margin: 0 auto 1.25rem;
+	padding: 0.5rem;
+	border-radius: 50%;
+	background-color: hsl(var(--gold) / 0.1);
+	border: 2px solid hsl(var(--gold));
+	box-shadow: var(--shadow-elegant);
+}
+
+/* Corbata animada (dress code) */
+.tie-icon {
+	width: 110px;
+	height: 110px;
+	animation: tieFloat 3s ease-in-out infinite;
+}
+
+@keyframes tieFloat {
+	0% { transform: translateY(0) rotate(0deg); }
+	50% { transform: translateY(-4px) rotate(1deg); }
+	100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Events */
+.events-container {
+    max-width: 96rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 480px));
+    justify-content: center;
+    gap: 3rem;
+}
+
+.event-card {
+    text-align: center;
+}
+
+.event-icon {
+    width: 5rem;
+    height: 5rem;
+    margin: 0 auto 1.5rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: hsl(var(--gold) / 0.1);
+    border: 2px solid hsl(var(--gold));
+    box-shadow: var(--shadow-elegant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--gold));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+.celebration-icon {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.glass {
+    width: 1.5rem;
+    height: 2rem;
+    background-color: hsl(var(--gold));
+    border-radius: 0.125rem;
+}
+
+.event-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: hsl(var(--brown));
+    margin-bottom: 1.5rem;
+}
+
+.event-details {
+    margin-bottom: 1.5rem;
+}
+
+.event-details h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: hsl(var(--brown-dark));
+    margin-bottom: 0.5rem;
+}
+
+.event-details p {
+    color: hsl(var(--foreground) / 0.7);
+}
+
+.event-address {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+/* Buttons */
+.btn-wedding {
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    border: none;
+    background: linear-gradient(135deg, hsl(var(--gold-dark)), hsl(var(--gold)));
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: var(--shadow-elegant);
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn-wedding:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: var(--shadow-gold);
+}
+
+/* Gallery */
+.gallery-container {
+    max-width: 64rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-subtitle {
+    color: hsl(var(--foreground) / 0.7);
+    margin-bottom: 3rem;
+}
+
+.camera-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0 auto 1.75rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: hsl(var(--gold) / 0.1);
+    border: 2px solid hsl(var(--gold));
+    box-shadow: var(--shadow-elegant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--gold));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    animation: gentle-bounce 2s ease-in-out infinite;
+}
+
+/* Carrusel */
+.carousel-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+.carousel-track-container {
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-elegant);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    flex: 0 0 100%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border: 1px solid hsl(var(--gold) / 0.15);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Marco que permite que la mayoría de cada foto encaje sin recortes forzados */
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: hsl(var(--brown));
+    box-shadow: var(--shadow-elegant);
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
+}
+
+.carousel-btn:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-counter {
+    text-align: center;
+    color: hsl(var(--foreground) / 0.7);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+/* Party */
+.party-container {
+    max-width: 96rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.party-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.party-card {
+    padding: 2rem;
+    border: 2px solid hsl(var(--gold) / 0.2);
+    border-radius: 0.5rem;
+    background-color: hsl(var(--warm-white));
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.party-card:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.party-icon {
+    width: 6rem;
+    height: 6rem;
+    margin: 0 auto 1.5rem;
+    padding: 0.75rem;
+    border-radius: 50%;
+    background-color: hsl(var(--gold) / 0.1);
+    box-shadow: var(--shadow-elegant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--gold));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    animation: gentle-pulse 2s ease-in-out infinite;
+    overflow: hidden;
+}
+
+.party-icon .tie-icon,
+.party-icon lord-icon,
+.party-icon svg {
+	max-width: 100%;
+	max-height: 100%;
+	display: block;
+}
+
+.party-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: hsl(var(--brown));
+    margin-bottom: 1rem;
+}
+
+.party-card p {
+    color: hsl(var(--foreground) / 0.7);
+    margin-bottom: 1.5rem;
+}
+
+/* Gifts */
+.gifts-container,
+.rsvp-container {
+    max-width: 32rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.gift-icon,
+.whatsapp-icon {
+    width: 5rem;
+    height: 5rem;
+    margin: 0 auto 2rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: hsl(var(--gold) / 0.1);
+    border: 2px solid hsl(var(--gold));
+    box-shadow: var(--shadow-elegant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--gold));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    animation: gentle-bounce 2s ease-in-out infinite;
+}
+
+.whatsapp-icon {
+    animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+/* RSVP */
+.rsvp-text {
+    margin-bottom: 1.75rem;
+}
+
+.rsvp-container .btn-wedding {
+    margin-top: 0.5rem;
+}
+
+/* Footer */
+.footer {
+    background-color: hsl(var(--brown));
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.footer-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+.footer-date {
+    color: #000000;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    top: 5rem;
+    right: 1rem;
+    background: white;
+    border: 1px solid hsl(var(--gold));
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: var(--shadow-elegant);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+    max-width: 300px;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Animations */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes gentle-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes gentle-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@keyframes flip-in {
+    0% { transform: rotateY(180deg); opacity: 0; }
+    100% { transform: rotateY(0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .hero-split { grid-template-columns: 1fr; height: auto; }
+    .hero-left { height: 60vh; min-height: 320px; }
+    .hero-right { height: auto; background: hsl(var(--paper-side)); }
+    .hero-right img { width: 100%; height: auto; object-fit: contain; object-position: center; display: block; }
+}
+
+@media (max-width: 768px) {
+    .names {
+        font-size: 3rem;
+    }
+    /* En móvil, eliminar laterales y usar fondo uniforme */
+    body { 
+        background-image: none; 
+        background-color: hsl(var(--warm-white)); 
+    }
+    /* El contenedor ocupa el 100% en móvil, sin borde/sombra */
+    .site-container { padding: 0; max-width: none; width: 100%; }
+    .page-shell { box-shadow: none; max-width: none; width: 100%; border: none; border-radius: 0; }
+    .hero-container { max-width: none; }
+    .hero-split { border-radius: 0; }
+
+    .section-title {
+        font-size: 2rem;
+    }
+    .countdown-number {
+        font-size: 3rem;
+    }
+    .countdown-container {
+        gap: 1.5rem;
+    }
+    .events-container {
+        grid-template-columns: 1fr;
+        gap: 4.5rem;
+    }
+    .party-grid {
+        grid-template-columns: 1fr;
+    }
+    .carousel-item {
+        height: 400px;
+    }
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .names {
+        font-size: 2.5rem;
+    }
+    .quote {
+        font-size: 1rem;
+    }
+    .countdown-number {
+        font-size: 2.5rem;
+    }
+    .carousel-item {
+        height: 350px;
+    }
+    .modal-content {
+        padding: 1.5rem;
+    }
+    .modal-names {
+        font-size: 1.5rem;
+    }
+}
+
+/* Left side custom hero snippet */
+.hero {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.hero img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	will-change: transform;
+	transition: transform 0.1s linear;
+}
+
+.texto {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	color: white;
+	padding: 0 1rem;
+}
+
+.texto .fecha {
+	font-size: 1.25rem;
+	margin-bottom: 1rem;
+}
+
+.texto h1 {
+	font-family: 'Great Vibes', cursive;
+	font-size: 4rem;
+	font-weight: 400;
+	margin: 0.5rem 0 1rem;
+}
+
+.texto .frase {
+	font-style: italic;
+	font-size: 1.1rem;
+	line-height: 1.5;
+}
+
+/* (Duplicado de .camera-icon eliminado: la regla vigente está más arriba) */
+
+/* Mobile-specific hero heights */
+@media (max-width: 768px) {
+	.hero-split { height: auto; }
+	.hero { height: 55vh; }
+	.hero-left {
+		display: block;
+		height: auto;
+		aspect-ratio: 4 / 5;
+		min-height: 420px;
+	}
+	.hero-right { height: auto; background: hsl(var(--paper-side)); }
+	.hero-right img { width: 100%; height: auto; object-fit: contain; object-position: center; display: block; }
+    /* Desactivar attachment fijo en móvil por compatibilidad/performance */
+    .hero-left { background-attachment: scroll !important; }
+}
+
+/* Desktop-specific: (parallax por capa, ya no usamos background-attachment) */
+
+/* ==========================================================
+   REDISEÑO VISUAL — ESTILO LAVANDA / XV AÑOS
+   Mantiene la lógica y las funciones existentes.
+   ========================================================== */
+:root {
+    --background: 36 50% 95%;
+    --foreground: 350 40% 22%;
+    --primary: 351 72% 28%;
+    --primary-foreground: 0 0% 100%;
+    --gold: 41 55% 55%;
+    --gold-light: 43 67% 82%;
+    --gold-dark: 38 52% 47%;
+    --brown: 351 72% 28%;
+    --brown-light: 30 50% 90%;
+    --brown-dark: 349 74% 21%;
+    --cream: 36 50% 95%;
+    --warm-white: 0 0% 100%;
+    --paper-side: 36 50% 95%;
+    --shadow-elegant: 0 8px 24px rgba(122, 20, 38, 0.14);
+    --shadow-gold: 0 5px 16px rgba(122, 20, 38, 0.18);
+}
+
+html, body {
+    background: #FCF8F1;
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    color: #7A1426;
+}
+
+/* Columna central como la referencia */
+.site-container,
+.page-shell,
+.hero-container {
+    max-width: 730px;
+}
+
+.page-shell {
+    background: #ffffff;
+    box-shadow: 0 8px 26px rgba(122, 20, 38, 0.13);
+}
+
+.content {
+    background: #ffffff;
+}
+
+/* ---------- Portada ---------- */
+.hero-wrapper {
+    max-width: 730px;
+    margin: 0 auto;
+    background: #F7EEE2;
+}
+
+.hero-split {
+    height: 535px;
+    border-radius: 0;
+    overflow: visible;
+    background: #F7EEE2;
+}
+
+.hero-left {
+    min-height: 535px;
+    overflow: visible;
+    position: relative;
+    isolation: isolate;
+}
+
+.hero-left-bg {
+    inset: 0;
+    background-position: center center;
+}
+
+.hero-overlay {
+    background: rgba(90, 15, 28, 0.30);
+    z-index: 1;
+}
+
+/* Flores arriba y abajo de la portada */
+.hero-left::before,
+.hero-left::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 78px;
+    background-image: url('floral-divider.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% auto;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.hero-left::before { top: -1px; }
+.hero-left::after { bottom: -1px; transform: rotate(180deg); }
+
+/* Texto de portada de la referencia */
+.welcome-hero {
+    color: #7A1426;
+}
+
+.modal-overlay {
+    background: rgba(228, 214, 240, 0.90);
+}
+
+.modal-overlay .welcome-hero::before {
+    opacity: 0.25;
+    filter: blur(18px);
+}
+
+.welcome-date {
+    font-family: 'Playfair Display', serif;
+    color: #ffffff;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    margin-bottom: 0.7rem;
+}
+
+.welcome-heading {
+    font-family: 'Playfair Display', serif;
+    color: #ffffff;
+    font-size: clamp(2.7rem, 6vw, 3.8rem);
+    font-weight: 400;
+    letter-spacing: 0;
+    border-top: 1px solid rgba(255,255,255,.78);
+    border-bottom: 1px solid rgba(255,255,255,.78);
+    padding: 0.2rem 1rem 0.35rem;
+    max-width: 500px;
+}
+
+.welcome-heading .names,
+.welcome-heading .ampersand {
+    font-family: 'Playfair Display', serif;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.welcome-cover-message {
+    color: #ffffff;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    max-width: 500px;
+    margin: 2rem auto 0.7rem;
+}
+
+.welcome-subtitle {
+    color: rgba(255,255,255,.85);
+    font-family: 'Playfair Display', serif;
+    font-size: 0.82rem;
+    margin-bottom: 1.15rem;
+}
+
+/* Botones estilo referencia */
+.btn-wedding {
+    padding: 0.62rem 1.35rem;
+    border-radius: 6px;
+    border: none;
+    background: #7A1426 !important;
+    color: #ffffff;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    box-shadow: none;
+    transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.btn-wedding:hover {
+    transform: translateY(-1px);
+    background: #5b4b8c !important;
+    box-shadow: 0 5px 12px rgba(122, 20, 38,.16);
+}
+
+.modal-buttons .btn-wedding {
+    min-width: 160px;
+}
+
+/* ---------- Secciones ---------- */
+.countdown-section,
+.events-section,
+.gallery-section,
+.party-section,
+.gifts-section,
+.rsvp-section,
+.guest-section {
+    position: relative;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.countdown-section,
+.events-section,
+.party-section,
+.rsvp-section {
+    background: #F7EEE2;
+}
+
+.gallery-section,
+.gifts-section,
+.guest-section {
+    background: #ffffff;
+}
+
+.countdown-section,
+.events-section,
+.gallery-section,
+.party-section,
+.gifts-section,
+.rsvp-section {
+    padding: 4.4rem 1.1rem 4.2rem;
+}
+
+/* Flor entre cada sección, usando el PNG entregado */
+.guest-section::before,
+.events-section::before,
+.gallery-section::before,
+.party-section::before,
+.gifts-section::before,
+.rsvp-section::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -43px;
+    width: 100%;
+    height: 86px;
+    background-image: url('floral-divider.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% auto;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Evita que el borde viejo genere otra división visual */
+.section-shadow-seam {
+    box-shadow: none;
+}
+
+.deco-divider {
+    display: none;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 2.55rem);
+    line-height: 1.15;
+    font-weight: 400;
+    color: #7A1426;
+    margin-bottom: .55rem;
+}
+
+.section-subtitle {
+    font-family: 'Playfair Display', serif;
+    color: #8E5B4A;
+    font-size: .82rem;
+    line-height: 1.45;
+    margin: 0 auto 2rem;
+}
+
+/* ---------- Countdown ---------- */
+.countdown-section {
+    padding-top: 3.6rem;
+    padding-bottom: 3.7rem;
+}
+
+.countdown-container {
+    gap: .7rem;
+    max-width: 390px;
+}
+
+.countdown-number {
+    font-family: 'Playfair Display', serif;
+    color: #7A1426;
+    font-size: clamp(2rem, 5vw, 2.45rem);
+    font-weight: 400;
+    margin-bottom: .25rem;
+}
+
+.countdown-label {
+    font-family: 'Playfair Display', serif;
+    color: #7E3A3A;
+    font-size: .68rem;
+    letter-spacing: .05em;
+    text-transform: lowercase;
+}
+
+.countdown-separator {
+    color: #8E5B4A;
+    font-size: 1.4rem;
+    align-self: center;
+}
+
+.hero-quote-card {
+    width: min(88%, 530px);
+    margin: 1.3rem auto 0;
+}
+
+.hero-quote-text,
+.hero-quote-ref {
+    font-family: 'Playfair Display', serif;
+    color: #7E3A3A;
+}
+
+.hero-quote-text {
+    font-size: .8rem;
+    font-weight: 400;
+    text-transform: none;
+    line-height: 1.45;
+}
+
+.hero-quote-ref {
+    font-size: .72rem;
+    font-weight: 400;
+    letter-spacing: .04em;
+    text-transform: none;
+}
+
+/* ---------- Ceremonia: tarjeta como "Celebración" de referencia ---------- */
+.events-container {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.event-card {
+    width: min(100%, 320px);
+    padding: 2rem 1.55rem;
+    background: #ffffff;
+    border: 1px solid #D8B872;
+    border-radius: 11px;
+    box-shadow: none;
+}
+
+.events-section .event-icon {
+    width: 38px;
+    height: 38px;
+    margin: 0 auto .7rem;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    filter: none;
+    animation: none;
+}
+
+.events-section .event-icon lord-icon {
+    width: 38px !important;
+    height: 38px !important;
+}
+
+.event-title {
+    font-family: 'Playfair Display', serif;
+    color: #7A1426;
+    font-size: 1.65rem;
+    font-weight: 400;
+    margin-bottom: 1.2rem;
+}
+
+.event-details {
+    margin-bottom: 1.1rem;
+}
+
+.event-details h4 {
+    font-family: 'Playfair Display', serif;
+    color: #a784c2;
+    font-size: .95rem;
+    font-weight: 400;
+    margin-bottom: .3rem;
+}
+
+.event-details p {
+    font-family: 'Playfair Display', serif;
+    color: #7d6b98;
+    font-size: .72rem;
+    line-height: 1.4;
+}
+
+.event-address {
+    font-size: .68rem !important;
+    margin-top: .15rem;
+}
+
+/* ---------- Galería / carrusel ---------- */
+.gallery-container {
+    max-width: 100%;
+}
+
+.camera-icon {
+    width: 3rem;
+    height: 3rem;
+    margin: .3rem auto 1.4rem;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    filter: none;
+    animation: none;
+}
+
+.gallery-section .camera-icon lord-icon {
+    width: 48px !important;
+    height: 48px !important;
+}
+
+.carousel-container {
+    max-width: 100%;
+    margin: 0 auto 1.2rem;
+}
+
+.carousel-track-container {
+    overflow: hidden;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.carousel-track {
+    align-items: stretch;
+}
+
+.carousel-item {
+    flex: 0 0 100%;
+    height: 330px;
+    padding: 10px;
+    background: #d9c8e4;
+    border: 1px solid #c5a8d8;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #ffffff;
+    border: 1px solid rgba(122, 20, 38,.10);
+    display: block;
+}
+
+.carousel-btn {
+    width: 38px;
+    height: 38px;
+    background: rgba(255,255,255,.94);
+    color: #7A1426;
+    box-shadow: 0 3px 10px rgba(122, 20, 38,.16);
+    font-size: .95rem;
+}
+
+.carousel-prev { left: 8px; }
+.carousel-next { right: 8px; }
+
+.carousel-counter {
+    color: #8E5B4A;
+    font-family: 'Playfair Display', serif;
+    font-size: .75rem;
+    margin-top: .8rem;
+}
+
+/* ---------- Fiesta / tarjetas ---------- */
+.party-container {
+    max-width: 100%;
+}
+
+.party-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.8rem;
+}
+
+.party-card {
+    padding: 1.35rem 1rem;
+    border: 1px solid #D8B872;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: none;
+}
+
+.party-card:hover {
+    box-shadow: 0 5px 14px rgba(122, 20, 38,.10);
+}
+
+.party-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto .8rem;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    filter: none;
+    animation: none;
+}
+
+.party-icon .tie-icon {
+    width: 48px;
+    height: 48px;
+}
+
+.party-icon lord-icon {
+    width: 48px !important;
+    height: 48px !important;
+}
+
+.party-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: #7A1426;
+    font-size: 1.05rem;
+    font-weight: 400;
+    margin-bottom: .7rem;
+}
+
+.party-card p {
+    font-family: 'Playfair Display', serif;
+    color: #8E5B4A;
+    font-size: .72rem;
+    line-height: 1.45;
+    margin-bottom: 1rem;
+}
+
+.party-card .btn-wedding {
+    font-size: .7rem;
+    padding: .55rem 1rem;
+}
+
+/* ---------- Regalos / RSVP ---------- */
+.gifts-container,
+.rsvp-container {
+    max-width: 500px;
+}
+
+.gift-icon,
+.whatsapp-icon {
+    width: 52px;
+    height: 52px;
+    margin: .5rem auto 1.2rem;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    filter: none;
+    animation: none;
+}
+
+.gifts-section .gift-icon lord-icon {
+    width: 52px !important;
+    height: 52px !important;
+}
+
+.whatsapp-icon svg {
+    width: 42px;
+    height: 42px;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+    max-width: 730px;
+    margin: 0 auto;
+    background: #7A1426;
+    color: #ffffff;
+    padding: 1.5rem 1rem;
+}
+
+.footer-content h3,
+.footer-date {
+    font-family: 'Playfair Display', serif;
+    color: #ffffff;
+}
+
+.footer-content h3 {
+    font-size: 1.15rem;
+    font-weight: 400;
+}
+
+.footer-date {
+    font-size: .72rem;
+    margin-top: .4rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .site-container,
+    .page-shell,
+    .hero-container,
+    .hero-wrapper,
+    .footer {
+        max-width: 100%;
+    }
+
+    .hero-split,
+    .hero-left {
+        height: 78vh;
+        min-height: 520px;
+        max-height: 680px;
+    }
+
+    .hero-left::before,
+    .hero-left::after {
+        height: 72px;
+    }
+
+    .countdown-section,
+    .events-section,
+    .gallery-section,
+    .party-section,
+    .gifts-section,
+    .rsvp-section {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .party-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .carousel-item {
+        height: min(78vw, 330px);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-split,
+    .hero-left {
+        height: 76vh;
+        min-height: 470px;
+    }
+
+    .welcome-heading {
+        font-size: 2.45rem;
+    }
+
+    .welcome-cover-message {
+        font-size: .82rem;
+        max-width: 320px;
+        margin-top: 1.5rem;
+    }
+
+    .countdown-container {
+        gap: .35rem;
+    }
+
+    .countdown-number {
+        font-size: 1.9rem;
+    }
+
+    .countdown-separator {
+        font-size: 1.15rem;
+    }
+
+    .event-card {
+        width: min(100%, 310px);
+    }
+
+    .carousel-item {
+        height: 285px;
+        padding: 8px;
+    }
+
+    .carousel-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .guest-section::before,
+    .events-section::before,
+    .gallery-section::before,
+    .party-section::before,
+    .gifts-section::before,
+    .rsvp-section::before {
+        height: 72px;
+        top: -36px;
+    }
+}
+
+/* Portada interior: texto de la invitación de referencia */
+.hero-content {
+    z-index: 3;
+}
+
+.hero-text {
+    max-width: 570px;
+    color: #ffffff;
+}
+
+.hero-text .date {
+    font-family: 'Playfair Display', serif;
+    font-size: .95rem;
+    line-height: 1.2;
+    margin-bottom: .65rem;
+    font-weight: 400;
+}
+
+.hero-text .names {
+    display: block;
+    width: min(100%, 410px);
+    margin: 0 auto .55rem;
+    padding: .18rem 1rem .28rem;
+    border-top: 1px solid rgba(255,255,255,.82);
+    border-bottom: 1px solid rgba(255,255,255,.82);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.9rem, 7vw, 4rem);
+    line-height: 1.05;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+.hero-xv-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 3vw, 1.45rem);
+    color: rgba(255,255,255,.86);
+    margin-bottom: 2.2rem;
+}
+
+.hero-text .quote {
+    font-family: 'Playfair Display', serif;
+    font-style: normal;
+    font-size: clamp(.78rem, 2vw, .95rem);
+    line-height: 1.45;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0 auto;
+    max-width: 570px;
+}
+
+@media (max-width: 480px) {
+    .hero-text .names {
+        font-size: 2.65rem;
+    }
+
+    .hero-xv-title {
+        font-size: 1.05rem;
+        margin-bottom: 1.6rem;
+    }
+
+    .hero-text .quote {
+        font-size: .76rem;
+    }
+
+    .hero-message-break {
+        display: none;
+    }
+}
+
+/* La pantalla inicial de bienvenida queda limpia, como en la referencia. */
+.modal-overlay .welcome-hero::before {
+    display: none;
+}
+
+/* ==========================================================
+   AJUSTES FINALES — ESTILO DE LA REFERENCIA
+   Solo cambios visuales. No altera la lógica del JS.
+   ========================================================== */
+
+:root {
+    --lavender-bg: #F7EEE2;
+    --lavender-page: #FCF8F1;
+    --purple: #7A1426;
+    --purple-soft: #A31D2E;
+    --purple-muted: #8E5B4A;
+    --card-border: #D8B872;
+}
+
+html, body {
+    font-family: 'Playfair Display', serif !important;
+    color: var(--purple);
+}
+
+body,
+.content {
+    background: var(--lavender-page) !important;
+}
+
+/* ---------- Flores: solo el arreglo, sin líneas CSS ---------- */
+.deco-divider {
+    display: none !important;
+}
+
+.floral-divider {
+    position: relative;
+    width: 100%;
+    height: 92px;
+    overflow: hidden;
+    line-height: 0;
+    background: transparent;
+    z-index: 8;
+}
+
+.floral-divider img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.floral-divider--hero-top,
+.floral-divider--hero-bottom {
+    background: transparent;
+}
+
+.floral-divider--hero-bottom img {
+    transform: rotate(180deg);
+}
+
+/* Las flores que separan las secciones son el PNG, no una línea */
+.guest-section::before,
+.events-section::before,
+.gallery-section::before,
+.party-section::before,
+.gifts-section::before,
+.rsvp-section::before {
+    background-image: url('floral-divider.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: 100% auto !important;
+    height: 92px !important;
+    top: -46px !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+/* ---------- Portada ---------- */
+.hero-wrapper {
+    max-width: 730px;
+    margin: 0 auto;
+    background: var(--lavender-bg);
+}
+
+.hero-split,
+.hero-left {
+    background: var(--lavender-bg);
+}
+
+.hero-left::before,
+.hero-left::after {
+    display: none !important;
+}
+
+.hero-content {
+    z-index: 3;
+}
+
+.hero-text,
+.hero-text .date,
+.hero-text .names,
+.hero-xv-title,
+.hero-text .quote {
+    font-family: 'Playfair Display', serif !important;
+}
+
+.hero-text .date {
+    font-size: .95rem;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.hero-text .names {
+    font-size: clamp(2.9rem, 7vw, 4rem);
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.hero-xv-title {
+    font-size: clamp(1.05rem, 3vw, 1.4rem);
+    font-weight: 400;
+}
+
+.hero-text .quote {
+    font-size: clamp(.78rem, 2vw, .95rem);
+    font-weight: 400;
+}
+
+/* ---------- Countdown ---------- */
+.countdown-section {
+    background: var(--lavender-bg) !important;
+    padding-top: 3.8rem !important;
+    padding-bottom: 4.3rem !important;
+}
+
+.section-title,
+.countdown-number,
+.countdown-label,
+.countdown-separator,
+.section-subtitle {
+    font-family: 'Playfair Display', serif !important;
+}
+
+.section-title {
+    color: var(--purple) !important;
+    font-size: clamp(2rem, 5vw, 2.55rem) !important;
+    font-weight: 400 !important;
+}
+
+.countdown-number {
+    color: var(--purple) !important;
+    font-size: clamp(2rem, 5vw, 2.45rem) !important;
+    font-weight: 400 !important;
+}
+
+.countdown-label {
+    color: var(--purple) !important;
+    font-size: .68rem !important;
+    font-weight: 400 !important;
+    letter-spacing: .03em !important;
+    text-transform: lowercase !important;
+}
+
+.countdown-separator {
+    color: var(--purple-muted) !important;
+}
+
+/* El texto bíblico eliminado no deja espacio residual */
+.hero-quote-card {
+    display: none !important;
+}
+
+/* ---------- Celebración: misma tarjeta visual de la referencia ---------- */
+.events-section {
+    background: var(--lavender-bg) !important;
+}
+
+.event-card {
+    width: min(100%, 320px) !important;
+    padding: 2rem 1.55rem !important;
+    background: #fff !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: 11px !important;
+    box-shadow: none !important;
+}
+
+.event-title,
+.event-details h4,
+.event-details p,
+.event-address {
+    font-family: 'Playfair Display', serif !important;
+}
+
+.event-title {
+    color: var(--purple) !important;
+    font-size: 1.65rem !important;
+    font-weight: 400 !important;
+}
+
+.event-details h4 {
+    color: var(--purple-soft) !important;
+    font-size: .95rem !important;
+    font-weight: 400 !important;
+}
+
+.event-details p {
+    color: var(--purple-muted) !important;
+    font-size: .72rem !important;
+}
+
+/* ---------- Carrusel: fotografía impresa vintage ---------- */
+.gallery-section {
+    background: #fff !important;
+}
+
+.gallery-section .section-title {
+    max-width: 100%;
+}
+
+.gallery-section .section-subtitle {
+    color: var(--purple-muted) !important;
+    font-size: .82rem !important;
+    margin-bottom: 1.7rem !important;
+}
+
+.carousel-track-container {
+    overflow: hidden !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.carousel-item {
+    flex: 0 0 100% !important;
+    height: 430px !important;
+    padding: 12px 12px 42px !important;
+    background: #ffffff !important;
+    border: 1px solid #E8D5AE !important;
+    border-radius: 2px !important;
+    box-shadow: 0 4px 10px rgba(122, 20, 38,.10) !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.carousel-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    background: #fff !important;
+    border: 0 !important;
+    display: block !important;
+}
+
+.carousel-btn {
+    background: rgba(255,255,255,.96) !important;
+    color: var(--purple) !important;
+    border: 1px solid #E8D5AE !important;
+}
+
+.carousel-counter {
+    font-family: 'Playfair Display', serif !important;
+    color: var(--purple-muted) !important;
+}
+
+/* ---------- Resto del sitio: misma tipografía ---------- */
+.party-card,
+.party-card h3,
+.party-card p,
+.gifts-container,
+.rsvp-container,
+.gifts-container .section-subtitle,
+.rsvp-container .section-subtitle,
+.footer,
+.footer-content h3,
+.footer-date,
+.btn-wedding,
+.toast,
+.toast h4,
+.toast p {
+    font-family: 'Playfair Display', serif !important;
+}
+
+/* Los botones conservan el funcionamiento y adoptan la estética */
+.btn-wedding {
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .floral-divider {
+        height: 78px;
+    }
+
+    .guest-section::before,
+    .events-section::before,
+    .gallery-section::before,
+    .party-section::before,
+    .gifts-section::before,
+    .rsvp-section::before {
+        height: 78px !important;
+        top: -39px !important;
+    }
+
+    .carousel-item {
+        height: min(78vw, 390px) !important;
+        padding: 10px 10px 34px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .floral-divider {
+        height: 68px;
+    }
+
+    .guest-section::before,
+    .events-section::before,
+    .gallery-section::before,
+    .party-section::before,
+    .gifts-section::before,
+    .rsvp-section::before {
+        height: 68px !important;
+        top: -34px !important;
+    }
+
+    .carousel-item {
+        height: 340px !important;
+        padding: 8px 8px 30px !important;
+    }
+}
+
+/* ==========================================================
+   AJUSTE FINAL DE PORTADA — FLORES SEPARADAS DE LA FOTO
+   ========================================================== */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* La portada completa queda como una sola tarjeta centrada. */
+.hero-wrapper {
+    width: 100%;
+    max-width: 730px !important;
+    margin: 0 auto !important;
+    padding: 0;
+    background: var(--lavender-bg) !important;
+    overflow: hidden;
+}
+
+/* Las flores ocupan su propia franja: NO se mezclan con la fotografía. */
+.floral-divider {
+    position: relative;
+    width: 100%;
+    height: 92px !important;
+    margin: 0;
+    padding: 0;
+    background: var(--lavender-bg) !important;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.floral-divider img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+}
+
+/* La foto queda físicamente separada de las flores por el fondo lavanda. */
+.hero-container {
+    width: 100%;
+    max-width: none !important;
+    margin: 0;
+    padding: 0 14px !important;
+    box-sizing: border-box;
+    background: var(--lavender-bg) !important;
+}
+
+.hero-split.hero-split--single {
+    width: 100%;
+    height: 620px !important;
+    min-height: 620px !important;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    background: var(--lavender-bg) !important;
+}
+
+.hero-left {
+    width: 100%;
+    height: 620px !important;
+    min-height: 620px !important;
+    margin: 0;
+    border-radius: 0;
+    overflow: hidden;
+    background: var(--lavender-bg) !important;
+}
+
+.hero-left-bg {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Nada de flores superpuestas sobre la fotografía. */
+.hero-left::before,
+.hero-left::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* El contenido continúa perfectamente centrado sobre la foto. */
+.hero-content {
+    inset: 0;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+/* ==========================================================
+   CARRUSEL — MARCO TIPO FOTOGRAFÍA ANTIGUA
+   ========================================================== */
+
+.carousel-item {
+    flex: 0 0 100% !important;
+    height: 430px !important;
+    padding: 10px 10px 48px !important;
+    box-sizing: border-box !important;
+    background: #fff !important;
+    border: 3px solid #A31D2E !important;
+    border-bottom-width: 34px !important;
+    border-radius: 2px !important;
+    box-shadow: 0 3px 8px rgba(122, 20, 38, .12) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.carousel-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    display: block !important;
+    border: 0 !important;
+    background: #fff !important;
+}
+
+/* ==========================================================
+   MÓVIL — INVITACIÓN CENTRADA
+   ========================================================== */
+
+@media (max-width: 768px) {
+    .hero-wrapper,
+    .page-shell {
+        width: calc(100% - 24px) !important;
+        max-width: 730px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .site-container {
+        width: 100% !important;
+        max-width: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        box-sizing: border-box;
+    }
+
+    .hero-container {
+        width: 100% !important;
+        padding: 0 10px !important;
+    }
+
+    .hero-split.hero-split--single,
+    .hero-left {
+        height: 610px !important;
+        min-height: 610px !important;
+    }
+
+    .floral-divider {
+        height: 82px !important;
+    }
+
+    .carousel-item {
+        height: min(78vw, 390px) !important;
+        padding: 8px 8px 38px !important;
+        border-width: 3px !important;
+        border-bottom-width: 30px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-wrapper,
+    .page-shell {
+        width: calc(100% - 20px) !important;
+    }
+
+    .hero-container {
+        padding: 0 8px !important;
+    }
+
+    .hero-split.hero-split--single,
+    .hero-left {
+        height: 580px !important;
+        min-height: 580px !important;
+    }
+
+    .floral-divider {
+        height: 72px !important;
+    }
+
+    .carousel-item {
+        height: 340px !important;
+        padding: 7px 7px 36px !important;
+        border-width: 3px !important;
+        border-bottom-width: 28px !important;
+    }
+}
+
+/* ==========================================================
+   AJUSTES DEFINITIVOS: CENTRADO MÓVIL + PORTADA + FLORES
+   ========================================================== */
+
+html, body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+}
+
+main {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* La invitación queda como una columna central, también en móvil. */
+.hero-wrapper,
+.page-shell {
+    width: min(730px, calc(100% - 24px)) !important;
+    max-width: 730px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.site-container {
+    width: 100% !important;
+    max-width: 730px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* ---------- Portada ----------
+   La foto ocupa toda la portada. Las flores van SUPERPUESTAS sobre la foto,
+   como imagen COMPLETA (sin recortar): una franja pegada arriba del todo
+   y otra pegada abajo del todo, justo antes de que la foto termine.
+   Así funcionan como división visual hacia la siguiente sección sin ser
+   una sección propia (no ocupan espacio aparte, no tienen fondo propio).
+*/
+.hero-wrapper {
+    background: #F7EEE2 !important;
+    overflow: hidden !important;
+}
+
+.hero-container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 14px !important;
+    background: #F7EEE2 !important;
+    box-sizing: border-box !important;
+}
+
+.hero-split.hero-split--single,
+.hero-left {
+    width: 100% !important;
+    height: 700px !important;
+    min-height: 700px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border-radius: 0 !important;
+    position: relative !important;
+}
+
+.hero-left-bg {
+    width: 100% !important;
+    height: 100% !important;
+    inset: 0 !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Ya no se usan pseudo-elementos recortados para las flores */
+.hero-left::before,
+.hero-left::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Las flores: se usa la imagen real (<img>), COMPLETA y sin recortar,
+   superpuesta sobre la foto de la portada. */
+.floral-divider {
+    position: absolute !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+    z-index: 6 !important;
+    pointer-events: none !important;
+    line-height: 0 !important;
+}
+
+.floral-divider--hero-top {
+    top: 0 !important;
+}
+
+.floral-divider--hero-bottom {
+    bottom: 0 !important;
+}
+
+.floral-divider img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;   /* nunca se recorta: se ve la imagen completa */
+    max-width: 100% !important;
+    object-fit: initial !important;
+}
+
+.floral-divider--hero-bottom img {
+    transform: rotate(180deg) !important;
+}
+
+/* ---------- Carrusel: foto tipo impresión antigua ---------- */
+.carousel-item,
+.carousel-item img {
+    background: #A31D2E !important;
+}
+
+.carousel-item {
+    border: 3px solid #A31D2E !important;
+    border-bottom-width: 34px !important;
+    border-radius: 2px !important;
+    box-sizing: border-box !important;
+}
+
+.carousel-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    border: 0 !important;
+}
+
+@media (max-width: 768px) {
+    /* La página ocupa el 100% del ancho, sin margen ni "borde" alrededor
+       de la invitación: las flores quedan pegadas al borde de la pantalla. */
+    .hero-wrapper,
+    .page-shell {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .site-container {
+        max-width: 100% !important;
+    }
+
+    .hero-container {
+        padding: 0 !important;
+    }
+
+    .hero-split.hero-split--single,
+    .hero-left {
+        height: 650px !important;
+        min-height: 650px !important;
+    }
+
+    .carousel-item {
+        height: min(78vw, 390px) !important;
+        padding: 8px 8px 38px !important;
+        border-width: 3px !important;
+        border-bottom-width: 30px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-split.hero-split--single,
+    .hero-left {
+        height: 620px !important;
+        min-height: 620px !important;
+    }
+
+    .carousel-item {
+        height: 340px !important;
+        padding: 7px 7px 36px !important;
+        border-width: 3px !important;
+        border-bottom-width: 28px !important;
+    }
+}
+
+/* ==========================================================
+   FLORES: reposición final — arriba pegada al borde real de la
+   tarjeta (ya no adentro de hero-left, así se libra del padding
+   de hero-container), abajo a caballo en la costura entre el
+   morado de la foto y el lila del countdown.
+   ========================================================== */
+
+/* La flor de arriba ahora es hija directa de .hero-wrapper (que ya
+   es position:relative), así que top:0 la deja pegada al borde
+   real de la tarjeta, sin el padding de 14px de hero-container. */
+.hero-wrapper > .floral-divider--hero-top {
+    position: absolute !important;
+    top: -20px !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 9 !important;
+}
+
+/* Ancla para la flor de abajo: el site-container que envuelve el
+   countdown, para poder posicionarla relativa a él. */
+.page-shell .site-container {
+    position: relative;
+}
+
+/* La flor de abajo ya no cuelga de hero-left (bottom:0), ahora
+   cuelga del site-container del countdown y se sube la mitad de
+   su propia altura con translateY(-50%): así su punto medio cae
+   justo en la costura entre el morado de la foto y el lila del
+   countdown, mitad sobre cada tono. */
+.page-shell .floral-divider--hero-bottom {
+    position: absolute !important;
+    top: 0 !important;
+    bottom: auto !important;
+    left: 0 !important;
+    width: 100% !important;
+    transform: translateY(-50%) !important;
+    z-index: 9 !important;
+    margin: 0 !important;
+    pointer-events: none !important;
+}
+
+/* ===========================================================
+   Portada: entrada mágica después de la intro
+   =========================================================== */
+
+/* Mientras dura la intro, la portada espera oculta */
+html.hero-pending .hero-text > *,
+html.hero-pending .floral-divider--hero-top,
+html.hero-pending .floral-divider--hero-bottom {
+    opacity: 0;
+}
+html.hero-pending .hero-left-bg { opacity: 0; }
+
+/* Fondo: aparece desde un resplandor suave y desenfocado */
+html.hero-reveal .hero-left-bg {
+    animation: magicBgIn 2.4s cubic-bezier(.22,.8,.3,1) both;
+}
+@keyframes magicBgIn {
+    0%   { opacity: 0; filter: blur(14px) brightness(1.8) saturate(.4); }
+    40%  { opacity: 1; }
+    100% { opacity: 1; filter: none; }
+}
+
+/* Textos: aparecen uno tras otro, desde el desenfoque, como polvo de estrellas */
+html.hero-reveal .hero-text > * {
+    animation: magicTextIn 1.6s cubic-bezier(.2,.8,.25,1) both;
+}
+html.hero-reveal .hero-text .date        { animation-delay: .5s; }
+html.hero-reveal .hero-text .names       { animation-delay: .95s; }
+html.hero-reveal .hero-text .hero-xv-title { animation-delay: 1.6s; }
+html.hero-reveal .hero-text .quote       { animation-delay: 2.1s; }
+
+@keyframes magicTextIn {
+    0%   { opacity: 0; filter: blur(12px); transform: translateY(18px) scale(.96); letter-spacing: .35em; }
+    60%  { opacity: 1; }
+    100% { opacity: 1; filter: blur(0); transform: none; letter-spacing: normal; }
+}
+
+/* El nombre además brilla un momento al terminar de aparecer */
+html.hero-reveal .hero-text .names {
+    animation:
+        magicTextIn 1.8s cubic-bezier(.2,.8,.25,1) .95s both,
+        magicNameGlow 2.6s ease-out 2.2s both;
+}
+@keyframes magicNameGlow {
+    0%   { text-shadow: 0 0 0 rgba(255,255,255,0); }
+    35%  { text-shadow: 0 0 18px rgba(255,246,230,.95), 0 0 42px rgba(240,205,140,.85); }
+    100% { text-shadow: 0 0 8px rgba(255,255,255,.35); }
+}
+
+/* Flores de arriba y abajo: se abren desde el centro hacia los lados */
+html.hero-reveal .floral-divider--hero-top,
+html.hero-reveal .floral-divider--hero-bottom {
+    animation: magicFloralIn 1.6s cubic-bezier(.3,.8,.3,1) .3s both;
+}
+html.hero-reveal .floral-divider--hero-bottom { animation-delay: .6s; }
+@keyframes magicFloralIn {
+    0%   { opacity: 0; clip-path: inset(0 50% 0 50%); }
+    30%  { opacity: 1; }
+    100% { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+
+/* Capa de destellos */
+.magic-layer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 4;
+}
+
+/* Barrido de luz que cruza la portada una vez */
+html.hero-reveal .magic-layer::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    bottom: -20%;
+    width: 45%;
+    left: -60%;
+    background: linear-gradient(100deg,
+        transparent 0%,
+        rgba(255,255,255,0) 20%,
+        rgba(255,248,236,.45) 50%,
+        rgba(255,255,255,0) 80%,
+        transparent 100%);
+    transform: skewX(-15deg);
+    animation: magicSweep 1.9s ease-in-out 1.1s both;
+}
+@keyframes magicSweep {
+    0%   { left: -60%; opacity: 0; }
+    15%  { opacity: 1; }
+    100% { left: 120%; opacity: 0; }
+}
+
+.magic-spark {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff 0%, #FFF4E0 35%, rgba(240,205,140,0) 70%);
+    box-shadow: 0 0 calc(var(--size) * 1.6) rgba(255,240,215,.9);
+    opacity: 0;
+    animation-name: magicSparkRise;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+}
+.magic-spark.is-star {
+    width: auto;
+    height: auto;
+    background: none;
+    box-shadow: none;
+    color: #fff6d8;
+    font-size: calc(var(--size) * 2.2);
+    line-height: 1;
+    text-shadow: 0 0 8px rgba(255,230,180,.95), 0 0 16px rgba(230,200,255,.8);
+}
+@keyframes magicSparkRise {
+    0%   { opacity: 0; transform: translate(0, 0) scale(0) rotate(0deg); }
+    25%  { opacity: 1; transform: translate(calc(var(--drift) * .3), calc(var(--rise) * .3)) scale(1.2) rotate(45deg); }
+    100% { opacity: 0; transform: translate(var(--drift), var(--rise)) scale(.3) rotate(120deg); }
+}
+
+.magic-twinkle {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 6px 2px rgba(255,246,230,.8);
+    opacity: 0;
+    animation-name: magicTwinkle;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+@keyframes magicTwinkle {
+    0%, 100% { opacity: 0; transform: scale(.4); }
+    50%      { opacity: .9; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.hero-reveal .hero-left-bg,
+    html.hero-reveal .hero-text > *,
+    html.hero-reveal .floral-divider--hero-top,
+    html.hero-reveal .floral-divider--hero-bottom {
+        animation: magicSimpleFade 1s ease both !important;
+    }
+    html.hero-reveal .magic-layer::before { display: none; }
+    @keyframes magicSimpleFade { from { opacity: 0; } to { opacity: 1; } }
+}
+
+/* ===========================================================
+   Iconos ilustrados (tiara, cámaras, corbatín, regalo, formulario)
+   =========================================================== */
+.event-icon.animated-heart,
+.camera-icon.animated-camera,
+.party-icon.animated-dresscode,
+.party-icon.animated-clipboard,
+.gift-icon.animated-gift,
+.whatsapp-icon.animated-whatsapp {
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.icono-invitacion {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    filter: drop-shadow(0 4px 8px rgba(122, 20, 38, 0.18));
+    animation: iconoFlotar 3.4s ease-in-out infinite;
+}
+
+.icono-tiara          { width: 118px; }
+.icono-camara         { width: 104px; }
+.icono-corbatin       { width: 78px; }
+.icono-camara-subir   { width: 96px; }
+.icono-regalo         { width: 86px; }
+.icono-formulario     { width: 56px; }
+
+.gift-icon.animated-gift,
+.whatsapp-icon.animated-whatsapp,
+.camera-icon.animated-camera {
+    margin-top: 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+}
+
+.party-icon.animated-dresscode,
+.party-icon.animated-clipboard {
+    height: 78px !important;          /* misma altura en ambas tarjetas */
+    margin-bottom: .6rem !important;
+}
+
+@keyframes iconoFlotar {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-5px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .icono-invitacion { animation: none; }
+}
+
+/* ---------- Detalles: tarjetas más angostas y elegantes ---------- */
+.party-grid {
+    grid-template-columns: repeat(2, minmax(0, 250px)) !important;
+    justify-content: center;
+    gap: 1.1rem !important;
+}
+
+@media (max-width: 640px) {
+    .party-grid {
+        grid-template-columns: minmax(0, 270px) !important;
+    }
+    .party-card {
+        padding: 1.4rem 1.2rem !important;
+    }
+}
+
+.party-card .event-title {
+    font-size: 1.45rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: .5rem;
+}
+
+/* ===========================================================
+   VARIANTE: toques de DORADO y ROSADO
+   =========================================================== */
+:root {
+    --oro: #C9A24D;
+    --oro-claro: #E9D08E;
+    --oro-grad: linear-gradient(90deg, #B8893A 0%, #E9D08E 45%, #C9A24D 60%, #B8893A 100%);
+    --rosa: #B3243A;
+    --rosa-suave: #FBF0E4;
+    --rosa-fuerte: #B8893A;
+}
+
+/* Títulos: adorno dorado debajo con un diamante rosado */
+.section-title,
+.event-title,
+.party-card h3 { position: relative; }
+.section-title::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 10px;
+    margin: .55rem auto 0;
+    background:
+        radial-gradient(circle, var(--rosa) 0 3px, transparent 3.5px) center / 10px 10px no-repeat,
+        linear-gradient(90deg, transparent, var(--oro) 20%, var(--oro-claro) 50%, var(--oro) 80%, transparent) center / 100% 1px no-repeat;
+}
+
+/* Subtítulos y etiquetas en rosado */
+.section-subtitle { color: #9B6B3E !important; }
+.event-details h4 { color: var(--rosa-fuerte) !important; letter-spacing: .04em; }
+
+/* Tarjetas: borde dorado fino + leve brillo rosado */
+.event-card,
+.party-card {
+    border: 1px solid var(--oro) !important;
+    background: linear-gradient(180deg, #ffffff 0%, #ffffff 70%, var(--rosa-suave) 100%) !important;
+    box-shadow: 0 0 0 4px #fff, 0 0 0 5px rgba(201,162,77,.35), 0 10px 24px -12px rgba(163,29,46,.35) !important;
+}
+
+/* Botones: morado con borde y brillo dorado */
+.btn-wedding {
+    border: 1px solid var(--oro) !important;
+    box-shadow: inset 0 0 0 2px rgba(233,208,142,.35), 0 4px 12px -4px rgba(201,162,77,.55) !important;
+    position: relative;
+    overflow: hidden;
+}
+.btn-wedding::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0; left: -60%;
+    width: 40%;
+    background: linear-gradient(100deg, transparent, rgba(255,236,190,.55), transparent);
+    transform: skewX(-18deg);
+    animation: brilloBoton 3.6s ease-in-out infinite;
+}
+@keyframes brilloBoton {
+    0%, 60% { left: -60%; }
+    100%    { left: 130%; }
+}
+
+/* Portada: líneas del nombre en dorado, fecha en rosado */
+.hero-text .names {
+    border-top-color: var(--oro-claro) !important;
+    border-bottom-color: var(--oro-claro) !important;
+}
+.hero-text .date { color: #FFE3EE !important; }
+.hero-text .hero-xv-title { color: var(--oro-claro) !important; text-shadow: 0 1px 6px rgba(0,0,0,.25); }
+
+/* Cuenta regresiva */
+.countdown-separator { color: var(--oro) !important; }
+.countdown-label { color: var(--rosa-fuerte) !important; }
+
+/* Galería: marco dorado */
+.carousel-item { border: 3px solid var(--oro) !important; }
+.carousel-btn { border: 1px solid var(--oro) !important; color: #B8893A !important; }
+.carousel-counter { color: #9B6B3E !important; }
+
+/* Pie de página */
+.footer { border-top: 3px solid var(--oro); }
+.footer h3 {
+    background: var(--oro-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+.footer-date { color: #F3E6CF !important; }
+
+/* Iconos: sombra cálida en vez de morada */
+.icono-invitacion { filter: drop-shadow(0 4px 8px rgba(184,137,58,.25)); }
+
+/* Destellos mágicos en dorado y rosado */
+.magic-spark { background: radial-gradient(circle, #fff 0%, #FBF0E4 35%, rgba(233,208,142,0) 70%); box-shadow: 0 0 calc(var(--size) * 1.6) rgba(233,208,142,.9); }
+.magic-spark.is-star { color: #F3D68A; text-shadow: 0 0 8px rgba(233,208,142,.95), 0 0 16px rgba(233,208,142,.8); }
+.magic-twinkle { box-shadow: 0 0 6px 2px rgba(233,208,142,.85); }
+
+/* ===========================================================
+   CARRUSEL — el marco se ajusta al tamaño de cada foto
+   (lados delgados, parte de abajo más ancha, estilo foto impresa)
+   =========================================================== */
+.carousel-item {
+    background: transparent !important;
+    border: 0 !important;
+    padding: 6px 0 !important;
+    box-shadow: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.carousel-item img {
+    width: auto !important;
+    height: auto !important;
+    max-width: calc(100% - 12px) !important;   /* resta el borde de los lados */
+    max-height: calc(100% - 34px) !important;  /* resta borde de arriba + abajo */
+    object-fit: contain !important;
+    box-sizing: content-box !important;
+    background: var(--marco-color, #A31D2E) !important;
+    border: 5px solid var(--marco-color, #A31D2E) !important;
+    border-bottom-width: 28px !important;
+    border-radius: 2px !important;
+    box-shadow: 0 6px 14px -4px rgba(122, 20, 38, .35) !important;
+}
+
+@media (max-width: 480px) {
+    .carousel-item img {
+        max-width: calc(100% - 10px) !important;
+        max-height: calc(100% - 30px) !important;
+        border-width: 4px !important;
+        border-bottom-width: 24px !important;
+    }
+}
+/* Variante dorado y rosado: marco dorado */
+:root { --marco-color: #C9A24D; }
+.carousel-item { border: 0 !important; }
+.carousel-item img { box-shadow: 0 6px 14px -4px rgba(184,137,58,.45) !important; }
+
+/* Marco del carrusel en morado (también en la variante dorado y rosado) */
+:root { --marco-color: #A31D2E !important; }
+.carousel-item img { box-shadow: 0 6px 14px -4px rgba(122, 20, 38, .35) !important; }
+
+/* Cuenta regresiva en blanco (fondos alternados lila / blanco) */
+.countdown-section {
+    background: #ffffff !important;
+}
+
+/* ===========================================================
+   Portada: texto más abajo para no tapar el rostro
+   =========================================================== */
+.hero-content {
+    align-items: flex-end !important;
+    padding-bottom: 125px !important;   /* queda por encima de las flores de abajo */
+}
+/* Sombra suave abajo para que el texto se lea bien sobre el vestido */
+.hero-overlay {
+    background: linear-gradient(180deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,.05) 45%,
+        rgba(52,10,18,.38) 100%) !important;
+}
+.hero-text .date,
+.hero-text .names,
+.hero-text .hero-xv-title,
+.hero-text .quote {
+    text-shadow: 0 2px 10px rgba(40, 8, 14, .45);
+}
+@media (max-width: 480px) {
+    .hero-content { padding-bottom: 105px !important; }
+}
+
+
+/* ===========================================================
+   Modal de bienvenida con los toques dorado y rosado
+   =========================================================== */
+#welcomeModal { transition: opacity .7s ease; }
+#welcomeModal.is-leaving { opacity: 0; pointer-events: none; }
+#welcomeModal .welcome-date { color: var(--rosa-fuerte) !important; letter-spacing: .12em; }
+#welcomeModal .welcome-heading .names {
+    background: var(--oro-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+#welcomeModal .welcome-heading::after {
+    content: "";
+    display: block;
+    width: 140px;
+    height: 10px;
+    margin: .8rem auto 0;
+    background:
+        radial-gradient(circle, var(--rosa) 0 3px, transparent 3.5px) center / 10px 10px no-repeat,
+        linear-gradient(90deg, transparent, var(--oro) 20%, var(--oro-claro) 50%, var(--oro) 80%, transparent) center / 100% 1px no-repeat;
+}
+#welcomeModal .welcome-subtitle { color: #9B6B3E !important; }
+
+
+/* ===== Intro: video de la puerta ===== */
+html.intro-lock,
+html.intro-lock body { overflow: hidden; }
+
+.intro-video {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: #2a1f38;
+    cursor: pointer;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+/* Fondo difuminado para pantallas anchas (computadora) */
+.intro-video::before {
+    content: "";
+    position: absolute;
+    inset: -40px;
+    background: var(--intro-poster) center / cover no-repeat;
+    filter: blur(28px) brightness(0.75);
+}
+.intro-video video {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+@media (min-aspect-ratio: 4/5) {
+    .intro-video video { object-fit: contain; }
+}
+.intro-video:focus-visible { outline: 3px solid #fff; outline-offset: -6px; }
+
+.intro-hint {
+    position: absolute;
+    left: 50%;
+    bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%);
+    padding: 0.7rem 1.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 999px;
+    background: rgba(80, 14, 26, 0.35);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+    animation: introHintPulse 2.4s ease-in-out infinite;
+    transition: opacity 0.4s ease;
+}
+@keyframes introHintPulse {
+    0%, 100% { opacity: 0.75; transform: translateX(-50%) scale(1); }
+    50%      { opacity: 1;    transform: translateX(-50%) scale(1.04); }
+}
+.intro-video.is-playing .intro-hint { opacity: 0; animation: none; }
+.intro-video.is-leaving { opacity: 0; visibility: hidden; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    .intro-hint { animation: none; }
+}
+
+
+/* ===== Mariposas: cada sección tiene las suyas ===== */
+.butterfly-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;      /* no bloquean botones ni el scroll */
+    overflow: hidden;
+}
+.butterfly {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--w);
+    height: var(--w);
+    opacity: 0;
+    transition: opacity 1.4s ease;
+    will-change: transform;
+}
+.butterfly-layer.is-on .butterfly { opacity: 1; }
+.butterfly-sprite {
+    width: 100%;
+    height: 100%;
+    background: url('mariposa-sprite.webp') 0 0 / 900% 700% no-repeat;
+    animation:
+        butterflyCols calc(var(--dur) / 7) steps(9) infinite,
+        butterflyRows var(--dur) steps(7) infinite;
+}
+@keyframes butterflyCols {
+    from { background-position-x: 0%; }
+    to   { background-position-x: 112.5%; }
+}
+@keyframes butterflyRows {
+    from { background-position-y: 0%; }
+    to   { background-position-y: 116.6667%; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .butterfly-layer { display: none; }
+}
+
+/* ===========================================================
+   VARIANTE: secciones alternadas ROJO VINO / CREMA
+   =========================================================== */
+:root {
+    --vino: #7A1426;
+    --vino-oscuro: #5E0E1C;
+    --crema-texto: #FBF0E4;
+}
+.content .countdown-section,
+.content .guest-section,
+.content .gallery-section,
+.content .gifts-section {
+    background: radial-gradient(ellipse at 50% 0%, #8E1A2E 0%, var(--vino) 55%, var(--vino-oscuro) 100%) !important;
+    color: var(--crema-texto) !important;
+}
+.content .countdown-section .section-title,
+.content .gallery-section .section-title,
+.content .gifts-section .section-title,
+.content .guest-section .guest-title,
+.content .countdown-section .countdown-number {
+    color: var(--crema-texto) !important;
+}
+.content .countdown-section .section-title::after,
+.content .gallery-section .section-title::after,
+.content .gifts-section .section-title::after {
+    background:
+        radial-gradient(circle, var(--oro-claro) 0 3px, transparent 3.5px) center / 10px 10px no-repeat,
+        linear-gradient(90deg, transparent, var(--oro) 20%, var(--oro-claro) 50%, var(--oro) 80%, transparent) center / 100% 1px no-repeat !important;
+}
+.content .countdown-section .countdown-label,
+.content .countdown-section .countdown-separator,
+.content .gallery-section .section-subtitle,
+.content .gifts-section .section-subtitle,
+.content .gallery-section .carousel-counter,
+.content .guest-section .guest-subtitle,
+.content .guest-section .guest-greeting,
+.content .guest-section .guest-closing {
+    color: var(--oro-claro) !important;
+}
+/* Botones dorados sobre fondo vino */
+.content .gifts-section .btn-wedding,
+.content .gallery-section .btn-wedding {
+    background: linear-gradient(135deg, #B8893A 0%, #E9D08E 50%, #C9A24D 100%) !important;
+    color: var(--vino-oscuro) !important;
+    border-color: #F3E2B0 !important;
+}
+/* Marco de fotos en blanco marfil, se separa del fondo vino */
+.content .gallery-section .carousel-item img {
+    border-color: #FFF8EE !important;
+    background: #FFF8EE !important;
+    box-shadow: 0 8px 18px -6px rgba(40, 6, 12, .55) !important;
+}
+
+/* ===========================================================
+   Sección final: Comparte tus fotos (compacta, fondo vino)
+   =========================================================== */
+.content .photos-section {
+    background: radial-gradient(ellipse at 50% 0%, #8E1A2E 0%, var(--vino) 55%, var(--vino-oscuro) 100%) !important;
+    padding: 3.6rem 1.1rem 3rem !important;
+}
+.photos-container {
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 1.6rem 1.4rem 1.7rem;
+    text-align: center;
+    border: 1px solid rgba(233, 208, 142, .55);
+    border-radius: 14px;
+    box-shadow: inset 0 0 0 4px rgba(122, 20, 38, 1), inset 0 0 0 5px rgba(233, 208, 142, .25);
+}
+.photos-container .icono-camara-subir {
+    width: 74px;
+    height: auto;
+    display: block;
+    margin: 0 auto .5rem;
+    filter: drop-shadow(0 4px 10px rgba(30, 4, 10, .45));
+}
+.photos-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 1.55rem;
+    color: var(--crema-texto);
+    margin: 0 0 .5rem;
+}
+.photos-text {
+    color: var(--oro-claro);
+    font-size: .95rem;
+    line-height: 1.6;
+    margin: 0 auto 1.1rem;
+    max-width: 30ch;
+}
+.content .photos-section .btn-wedding {
+    background: linear-gradient(135deg, #B8893A 0%, #E9D08E 50%, #C9A24D 100%) !important;
+    color: var(--vino-oscuro) !important;
+    border-color: #F3E2B0 !important;
+}
+/* Pie de página un tono más oscuro para separarlo de la última sección */
+.footer { background: #4E0B17 !important; }
+
+/* Ícono de notas */
+.party-card .party-icon .icono-notas { width: 84px !important; max-width: none !important; max-height: none !important; height: auto; display: block; flex: none !important; min-width: 84px; margin: 0 auto; }
+
+/* Ventana de notas */
+.notes-modal { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; padding: 1.25rem; opacity: 0; transition: opacity .25s ease; }
+.notes-modal[hidden] { display: none; }
+.notes-modal.is-open { opacity: 1; }
+.notes-backdrop { position: absolute; inset: 0; background: rgba(40, 6, 12, .55); backdrop-filter: blur(2px); }
+.notes-card {
+    position: relative;
+    width: min(100%, 380px);
+    background: linear-gradient(180deg, #FFFDF8 0%, #FBF0E4 100%);
+    border: 1px solid var(--oro);
+    border-radius: 14px;
+    box-shadow: 0 0 0 4px #FFFDF8, 0 0 0 5px rgba(201,162,77,.45), 0 20px 40px -12px rgba(40, 6, 12, .5);
+    padding: 2rem 1.6rem 1.6rem;
+    text-align: center;
+    transform: translateY(8px) scale(.98);
+    transition: transform .25s ease;
+}
+.notes-modal.is-open .notes-card { transform: none; }
+.notes-title { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 1.6rem; color: var(--vino); margin: 0; }
+.notes-rule { width: 110px; height: 10px; margin: .5rem auto 1rem;
+    background: radial-gradient(circle, #B3243A 0 3px, transparent 3.5px) center / 10px 10px no-repeat,
+                linear-gradient(90deg, transparent, var(--oro) 20%, var(--oro-claro) 50%, var(--oro) 80%, transparent) center / 100% 1px no-repeat; }
+.notes-card p { color: #5E2A2A; line-height: 1.65; margin: 0 0 .6rem; }
+.notes-card .notes-thanks { color: #9B6B3E; font-style: italic; margin-bottom: 1.2rem; }
+.notes-close { position: absolute; top: .4rem; right: .6rem; background: none; border: 0; font-size: 1.7rem; line-height: 1; color: var(--vino); cursor: pointer; padding: .3rem .5rem; }
+.notes-close:focus-visible, .notes-card .btn-wedding:focus-visible { outline: 2px solid var(--oro); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .notes-modal, .notes-card { transition: none; } }
+.notes-card:focus { outline: none; }
+.notes-close { border: 0 !important; box-shadow: none !important; background: none !important; }
+.party-icon:has(.icono-notas) { overflow: visible !important; }
+
+/* Botón de música en vino con aro dorado */
+.music-button {
+    background: radial-gradient(circle at 35% 30%, #A31D2E 0%, #7A1426 60%, #5E0E1C 100%) !important;
+    border: 2px solid #E9D08E !important;
+    box-shadow: 0 0 0 3px rgba(255, 248, 238, .85), 0 6px 16px -4px rgba(60, 8, 16, .45) !important;
+}
+
+/* ===========================================================
+   Sin sección de regalo: se re-intercalan los colores
+   Confirma tu asistencia = VINO · Comparte tus fotos = CREMA
+   =========================================================== */
+.content .rsvp-section:not(.photos-section) {
+    background: radial-gradient(ellipse at 50% 0%, #8E1A2E 0%, var(--vino) 55%, var(--vino-oscuro) 100%) !important;
+    color: var(--crema-texto) !important;
+}
+.content .rsvp-section:not(.photos-section) .section-title { color: var(--crema-texto) !important; }
+.content .rsvp-section:not(.photos-section) .section-subtitle { color: var(--oro-claro) !important; }
+.content .rsvp-section:not(.photos-section) .section-title::after {
+    background:
+        radial-gradient(circle, var(--oro-claro) 0 3px, transparent 3.5px) center / 10px 10px no-repeat,
+        linear-gradient(90deg, transparent, var(--oro) 20%, var(--oro-claro) 50%, var(--oro) 80%, transparent) center / 100% 1px no-repeat !important;
+}
+.content .rsvp-section:not(.photos-section) .btn-wedding {
+    background: linear-gradient(135deg, #B8893A 0%, #E9D08E 50%, #C9A24D 100%) !important;
+    color: var(--vino-oscuro) !important;
+    border-color: #F3E2B0 !important;
+}
+.whatsapp-icon .icono-whatsapp {
+    width: 84px !important; height: 84px !important;
+    max-width: none !important; max-height: none !important;
+    flex: none !important; display: block; margin: 0 auto;
+    filter: drop-shadow(0 6px 12px rgba(30, 4, 10, .45));
+}
+.whatsapp-icon:has(.icono-whatsapp) { overflow: visible !important; }
+
+/* Comparte tus fotos pasa a crema */
+.content .photos-section {
+    background: #F7EEE2 !important;
+}
+.content .photos-section .photos-container {
+    background: linear-gradient(180deg, #FFFDF8 0%, #FBF0E4 100%);
+    border: 1px solid var(--oro);
+    box-shadow: 0 0 0 4px #FFFDF8, 0 0 0 5px rgba(201,162,77,.45), 0 14px 30px -14px rgba(122, 20, 38, .3);
+}
+.content .photos-section .photos-title { color: var(--vino); }
+.content .photos-section .photos-text { color: #8E5B4A; }
+.content .photos-section .photos-container .icono-camara-subir { filter: drop-shadow(0 4px 8px rgba(122, 20, 38, .2)); }
+.content .photos-section .btn-wedding {
+    background: linear-gradient(135deg, #7A1426 0%, #A31D2E 50%, #7A1426 100%) !important;
+    color: #FFF8EE !important;
+    border-color: var(--oro) !important;
+}
+
+/* Ícono de cámara dentro de la tarjeta "Comparte tus fotos" (sección Detalles) */
+.party-card .party-icon .icono-camara-subir { width: 92px !important; max-width: none !important; max-height: none !important; height: auto; display: block; flex: none !important; min-width: 92px; margin: 0 auto; }
+.party-icon:has(.icono-camara-subir) { overflow: visible !important; }
+
+/* Portada: encuadre de la foto */
+.hero-left .hero-left-bg { background-position: 58% 20% !important; }
+
+/* Ventana de regalos (cuentas de banco) */
+.gift-modal { z-index: 10000; }
+.gift-account { background: #fff; border: 1px solid rgba(201,162,77,.45); border-radius: 12px; padding: 1.1rem 1rem 1.2rem; margin: 0 0 1rem; }
+.gift-bank { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #9B6B3E; margin-bottom: .45rem; }
+.gift-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--vino); margin-bottom: .25rem; }
+.gift-number { font-size: 1.45rem; font-weight: 700; letter-spacing: .08em; color: #3A1A1A; margin-bottom: .3rem; user-select: all; }
+.gift-type { font-size: .9rem; color: #5E2A2A; margin-bottom: .9rem; }
+.gift-type span { font-weight: 600; }
+
+/* ================================================================
+   Portada fija al deslizar: se queda quieta y la invitación sube encima
+   ================================================================ */
+html, body, main { overflow-x: clip !important; }  /* "hidden" rompe el sticky */
+.hero-wrapper { position: sticky !important; top: 0; z-index: 0 !important; }
+.page-shell { position: relative; z-index: 2; }
+.hero-left .hero-left-bg { will-change: transform; transform-origin: 50% 35%; }
+.hero-left .hero-content { will-change: opacity, transform; }
+.page-shell .floral-divider--hero-bottom { position: relative; z-index: 3; }
+.footer { position: relative; z-index: 2; }
+
+/* ================================================================
+   Aparición elegante al deslizar
+   ================================================================ */
+html.js-reveal .rv,
+html.js-reveal .rv-fade {
+    opacity: 0;
+    filter: blur(6px);
+    transition:
+        opacity 1.1s cubic-bezier(.22,.8,.3,1),
+        transform 1.1s cubic-bezier(.22,.8,.3,1),
+        filter 1.1s ease;
+    transition-delay: var(--rv-delay, 0s);
+}
+html.js-reveal .rv { transform: translate3d(0, 34px, 0) scale(.985); }
+html.js-reveal .rv.is-visible,
+html.js-reveal .rv-fade.is-visible { opacity: 1; filter: none; }
+html.js-reveal .rv.is-visible { transform: none; }
+
+/* Línea dorada bajo los títulos: se dibuja desde el centro al aparecer */
+html.js-reveal .section-title.rv::after { transform: scaleX(0); transition: transform 1.2s cubic-bezier(.22,.8,.3,1) calc(var(--rv-delay, 0s) + .35s); }
+html.js-reveal .section-title.rv.is-visible::after { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+    html.js-reveal .rv, html.js-reveal .rv-fade { opacity: 1; transform: none; filter: none; transition: none; }
+}

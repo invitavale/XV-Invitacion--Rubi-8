@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es" class="hero-pending intro-lock">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Yerianny - Mis XV años</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="puerta-poster.jpg">
+    <link rel="preload" as="image" href="foto0.jpg" imagesizes="100vw">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="ccs-2.css?v=yer-20261022-01">
+</head>
+<body>
+    <!-- Intro: video de la puerta. Al tocarlo entra con música -->
+    <div id="introVideo" class="intro-video" role="button" tabindex="0"
+         aria-label="Toca para abrir la invitación de Yerianny"
+         style="--intro-poster: url('puerta-poster.jpg');">
+        <video id="doorVideo" src="puerta.mp4" poster="puerta-poster.jpg"
+               playsinline webkit-playsinline preload="auto"></video>
+        <div class="intro-hint">Toca para abrir</div>
+    </div>
+
+
+    <!-- Música de fondo: archivo propio, arranca en el mismo toque que la puerta -->
+    <audio id="bgMusic" src="musica.mp3" loop preload="auto"></audio>
+
+    <!-- Reproductor de música -->
+    <div id="musicPlayer" class="music-player" style="display: none;">
+        <button id="musicToggle" class="music-button animated-volume" title="Reproducir/Pausar música">
+            <svg id="volumeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <defs>
+                    <linearGradient id="volumeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#E9D08E;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#C9A24D;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#B8893A;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <!-- Altavoz -->
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" 
+                         fill="url(#volumeGradient)" stroke="url(#volumeGradient)" class="speaker">
+                    <animateTransform attributeName="transform" type="scale" 
+                        values="1;1.1;1" dur="2s" repeatCount="indefinite"/>
+                </polygon>
+                
+                <!-- Ondas sonoras animadas -->
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" 
+                      stroke="url(#volumeGradient)" stroke-width="2" fill="none" opacity="0" class="sound-wave-outer">
+                    <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0s"/>
+                    <animate attributeName="stroke-width" values="1.5;2.5;1.5" dur="1.5s" repeatCount="indefinite" begin="0s"/>
+                </path>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.08" 
+                      stroke="url(#volumeGradient)" stroke-width="2" fill="none" opacity="0" class="sound-wave-inner">
+                    <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+                    <animate attributeName="stroke-width" values="1.5;2.5;1.5" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+                </path>
+                
+                <!-- Partículas de sonido -->
+                <circle cx="13" cy="8" r="0.5" fill="#E9D08E" opacity="0" class="sound-particle">
+                    <animate attributeName="opacity" values="0;1;0" dur="1s" repeatCount="indefinite" begin="0s"/>
+                    <animateTransform attributeName="transform" type="translate" values="0,0;3,-2" dur="1s" repeatCount="indefinite" begin="0s"/>
+                </circle>
+                <circle cx="13" cy="16" r="0.5" fill="#C9A24D" opacity="0" class="sound-particle">
+                    <animate attributeName="opacity" values="0;1;0" dur="1.2s" repeatCount="indefinite" begin="0.3s"/>
+                    <animateTransform attributeName="transform" type="translate" values="0,0;3,2" dur="1.2s" repeatCount="indefinite" begin="0.3s"/>
+                </circle>
+                <circle cx="13" cy="12" r="0.8" fill="#B8893A" opacity="0" class="sound-particle">
+                    <animate attributeName="opacity" values="0;1;0" dur="0.8s" repeatCount="indefinite" begin="0.6s"/>
+                    <animateTransform attributeName="transform" type="translate" values="0,0;4,0" dur="0.8s" repeatCount="indefinite" begin="0.6s"/>
+                </circle>
+            </svg>
+        </button>
+    </div>
+    
+    <main>
+    <!-- Hero Section dividida 50/50 -->
+    <div class="hero-wrapper">
+        <div class="floral-divider floral-divider--hero-top" aria-hidden="true">
+            <img src="floral-divider-trimmed.png" alt="">
+        </div>
+        <div class="site-container hero-container">
+            <div class="hero-split hero-split--single">
+                <!-- Portada única con imagen y efecto scroll -->
+                <div class="hero-left">
+                    <div class="hero-left-bg"></div>
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <div class="hero-text">
+                            <div class="date">31.12.2026</div>
+                            <h1 class="names">Yerianny</h1>
+                            <div class="hero-xv-title">Mis XV años</div>
+                            <p class="quote">Te espero para compartir la alegría de esa noche que será para mí mágica,<br class="hero-message-break"> inolvidable y única.</p>
+                        </div>
+                    </div>
+                    <!-- Capa de destellos mágicos de la portada -->
+                    <div id="magicLayer" class="magic-layer" aria-hidden="true"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Content -->
+    <div class="page-shell">
+        <div class="content">
+            <div class="site-container">
+            <div class="floral-divider floral-divider--hero-bottom" aria-hidden="true">
+                <img src="floral-divider-trimmed.png" alt="">
+            </div>
+            <!-- Countdown -->
+            <section class="countdown-section section-shadow-seam">
+                <h2 class="section-title">Faltan</h2>
+                <div class="countdown-container">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">DÍAS</div>
+                    </div>
+                    <div class="countdown-separator">|</div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">HS</div>
+                    </div>
+                    <div class="countdown-separator">|</div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">MIN</div>
+                    </div>
+                    <div class="countdown-separator">|</div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">SEG</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Saludo para invitados (visible solo si la URL trae ?invitados= o ?familia=) -->
+            <section id="guestSection" class="guest-section" style="display:none;">
+                <div id="guestBadge" class="guest-badge">0</div>
+                <h2 class="guest-title">Invitados</h2>
+                <p id="guestSubtitle" class="guest-subtitle" style="display:none;"></p>
+                <div id="guestGreeting" class="guest-greeting"></div>
+                <p class="guest-closing">Tu presencia es lo más importante. ¡No faltes!</p>
+            </section>
+
+            <!-- Ceremony & Celebration -->
+            <section class="events-section section-shadow-seam ceremony-section">
+                <div class="events-container">
+            <!-- Ceremony -->
+                    <div class="event-card">
+                        <div class="event-icon animated-heart">
+                            <img class="icono-invitacion icono-tiara" src="icono-tiara.png" alt="" loading="lazy">
+                        </div>
+                        <h3 class="event-title">Celebración</h3>
+                        <div class="event-details">
+                            <h4>Día</h4>
+                            <p>Jueves 31 de Diciembre de 2026 - 7:00 PM</p>
+                        </div>
+                        <div class="event-details">
+                            <h4>Lugar</h4>
+                            <p>Villa Las Palmas</p>
+                            <p class="event-address">Boca Chica, Santo Domingo - República Dominicana</p>
+                        </div>
+                        <button class="btn-wedding" onclick="window.open('https://www.google.com/maps/search/?api=1&amp;query=Boca+Chica,+Santo+Domingo,+Rep%C3%BAblica+Dominicana', '_blank')">¿Cómo llegar?</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Photo Gallery -->
+            <section class="gallery-section section-shadow-seam">
+                <div class="deco-divider deco-divider--top"></div>
+
+                <div class="gallery-container">
+                    <h2 class="section-title">Un recorrido de estos XV años</h2>
+                    
+                    <div class="camera-icon animated-camera">
+                        <img class="icono-invitacion icono-camara" src="icono-camara.png" alt="" loading="lazy">
+                    </div>
+
+            <!-- Carrusel -->
+                    <div class="carousel-container">
+                        <button class="carousel-btn carousel-prev" id="prevBtn">❮</button>
+                        <div class="carousel-track-container">
+                            <div class="carousel-track" id="carouselTrack">
+                                <div class="carousel-item" aria-hidden="true">
+                                    <img src="foto4.jpg" alt="" loading="lazy">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="foto1.jpg" alt="Yerianny - foto 1">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="foto2.jpg" alt="Yerianny - foto 2">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="foto3.jpg" alt="Yerianny - foto 3">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="foto4.jpg" alt="Yerianny - foto 4">
+                                </div>
+                                <div class="carousel-item" aria-hidden="true">
+                                    <img src="foto1.jpg" alt="" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-btn carousel-next" id="nextBtn">❯</button>
+                    </div>
+
+                    <div class="carousel-counter">
+                        <span id="currentSlide">1</span> / <span id="totalSlides">4</span> fotos
+                    </div>
+                </div>
+
+                <div class="deco-divider deco-divider--bottom"></div>
+            </section>
+
+            <!-- Party Information -->
+            <section class="party-section section-shadow-seam">
+                <div class="party-container">
+                    <h2 class="section-title">Detalles</h2>
+                    <p class="section-subtitle">Hagamos juntos una fiesta épica. Aquí algunos detalles a tener en cuenta.</p>
+
+                    <div class="party-grid">
+                        <div class="party-card">
+                            <div class="party-icon animated-dresscode">
+                                <img class="icono-invitacion icono-corbatin" src="icono-corbatin.png" alt="" loading="lazy">
+                            </div>
+                            <h3 class="event-title">Código de Vestimenta</h3>
+                            <p>Todos vestidos de blanco.</p>
+                            <button class="btn-wedding" onclick="showDressCode()">Ver más</button>
+                        </div>
+                        <div class="party-card">
+                            <div class="party-icon animated-camera">
+                                <img class="icono-invitacion icono-camara-subir" src="icono-camara-subir.png" alt="" loading="lazy">
+                            </div>
+                            <h3 class="event-title">Comparte tus fotos</h3>
+                            <p>Ayúdanos a guardar cada momento de esta noche. Sube aquí las fotos que tomes durante la fiesta.</p>
+                            <button class="btn-wedding" onclick="sharePhotos()">Subir fotos</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Regalos -->
+            <section class="gifts-section section-shadow-seam">
+                <div class="gifts-container">
+                    <h2 class="section-title">Regalos</h2>
+                    <p class="section-subtitle">Tu presencia es mi mejor regalo. Si deseas tener un detalle conmigo, aquí te dejo una opción.</p>
+                    <div class="gift-icon animated-gift">
+                        <img class="icono-invitacion icono-regalo" src="icono-regalo.png" alt="" loading="lazy">
+                    </div>
+                    <button class="btn-wedding" onclick="openGiftLink()">Ver datos</button>
+                </div>
+            </section>
+
+            <section class="rsvp-section photos-section rsvp-final section-shadow-seam">
+                <div class="rsvp-container">
+                    <h2 class="section-title">Confirma tu asistencia</h2>
+                    <div class="whatsapp-icon animated-whatsapp">
+                        <svg class="icono-invitacion icono-whatsapp" viewBox="0 0 100 100" role="img" aria-label="WhatsApp">
+                            <defs>
+                                <linearGradient id="waOro" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0" stop-color="#B8893A"/>
+                                    <stop offset=".5" stop-color="#F3E2B0"/>
+                                    <stop offset="1" stop-color="#B8893A"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- burbuja de mensaje -->
+                            <path d="M50 12 C29 12 13 27 13 46 c0 8 3 15 8 21 l-5 17 18-6 c5 2 10 3 16 3 21 0 37-15 37-35 S71 12 50 12z"
+                                  fill="#FFF8EE" stroke="url(#waOro)" stroke-width="4" stroke-linejoin="round"/>
+                            <!-- teléfono -->
+                            <path d="M39 31 c-2 0-4 2-5 4 -2 4-1 9 3 15 4 6 9 10 15 13 3 1 6 1 8-1 l3-3 c1-1 1-3 0-4 l-6-5 c-1-1-3-1-4 0 l-2 2 c-3-1-7-5-9-9 l2-2 c1-1 1-3 0-4 l-4-6 c-0-0-1-1-1-1z"
+                                  fill="#7A1426"/>
+                        </svg>
+                    </div>
+                    <button class="btn-wedding" onclick="confirmAttendance()">Confirmar asistencia</button>
+                </div>
+            </section>
+
+            </div>
+        </div>
+    </div>
+    </main>
+
+    <!-- Ventana de regalos: cuentas de banco -->
+    <div id="giftModal" class="notes-modal gift-modal" role="dialog" aria-modal="true" aria-labelledby="giftTitle" hidden>
+        <div class="notes-backdrop" onclick="closeGift()"></div>
+        <div class="notes-card" tabindex="-1">
+            <button class="notes-close" onclick="closeGift()" aria-label="Cerrar">&times;</button>
+            <h3 id="giftTitle" class="notes-title">Cuentas de banco</h3>
+            <div class="notes-rule" aria-hidden="true"></div>
+            <div class="gift-account">
+                <div class="gift-bank">Banreservas · Ahorros</div>
+                <div class="gift-name">Juan y Yerianny</div>
+                <div class="gift-number" id="giftNumber">0000000000</div>
+                <div class="gift-type"><span>Tipo de cuenta:</span> Ahorros</div>
+                <button class="btn-wedding gift-copy" onclick="copyAccount('0000000000', this)">Copiar número</button>
+            </div>
+            <p class="notes-thanks">¡Gracias por tu cariño!</p>
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast">
+        <div id="toastContent"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>Yerianny</h3>
+            <p class="footer-date">31 de Diciembre de 2026</p>
+        </div>
+    </footer>
+
+    <script src="java2.js?v=yer-20261022-01"></script>
+</body>
+</html>
